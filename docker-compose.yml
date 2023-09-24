@@ -1,15 +1,16 @@
+  
+version: '3.5'
 
-version: '3.8'
 services:
-  web:
+  app:
     build:
-      context: ./
-      target: runner
+      context: .
+      dockerfile: Dockerfile
+    container_name: docker-next
+    ports:
+      - '3000:3000'
     volumes:
       - .:/app
-    command: npm run dev
-    ports:
-      - "3002:3000"
+      - /app/node_modules
     environment:
-      NODE_ENV: ${MODE_NODE_ENV}
       NEXT_PUBLIC_WORDPRESS_KEY: ${NEXT_PUBLIC_WORDPRESS_KEY}
