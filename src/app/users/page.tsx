@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 async function fetchOrders() {
-  const res = await fetch("http://localhost:3000/api/orders");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_LOCAL}/api/orders`);
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
@@ -16,7 +16,6 @@ async function fetchOrders() {
 
 export default async function Home() {
   const orders = await fetchOrders();
-  console.log(orders);
   
   const cant = orders.length;
 
