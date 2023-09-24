@@ -39,6 +39,7 @@ export default async function Home() {
       <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
         <thead>
           <tr className="text-left border-b border-gray-300">
+            <th className="px-4 py-3">id</th>
             <th className="px-4 py-3">Firstname</th>
             <th className="px-4 py-3">Lastname</th>
             <th className="px-4 py-3">Age</th>
@@ -50,7 +51,8 @@ export default async function Home() {
         </thead>
         <tbody>
           {orders.map((order: any) => (
-            <tr className="bg-gray-700 border-b border-gray-600">
+            <tr key={order.id} className="bg-gray-700 border-b border-gray-600">
+              <td className="px-4 py-3">{order.id}</td>
               <td className="px-4 py-3">{order.billing.first_name}</td>
               <td className="px-4 py-3">{order.billing.last_name}</td>
               {order.meta_data.map((meta: any) => (
