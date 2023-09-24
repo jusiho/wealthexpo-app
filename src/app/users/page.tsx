@@ -56,7 +56,7 @@ export default async function Home() {
               <td className="px-4 py-3">{order.billing.first_name}</td>
               <td className="px-4 py-3">{order.billing.last_name}</td>
               {order.meta_data.map((meta: any) => (
-                <td className="px-4 py-3">{meta.value}</td>
+                <td key={meta.id} className="px-4 py-3">{meta.value}</td>
               ))}
             </tr>
           ))}
