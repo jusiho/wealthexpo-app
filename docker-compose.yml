@@ -1,17 +1,14 @@
-  
-version: '3.5'
+version: '1.5'
 
 services:
   app:
-    build:
-      context: ./
-      target: runner
+    build: 
+      context: .
+      dockerfile: dockerfile
+    container_name: nextjs13-wealth
     ports:
-      - '3002:3000'
+      - "3002:3000"
     volumes:
       - .:/app
       - /app/node_modules
-    environment:
-      NEXT_PUBLIC_WORDPRESS_KEY: ${NEXT_PUBLIC_WORDPRESS_KEY}
-volumes:
-  nextpro:
+    
