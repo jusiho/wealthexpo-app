@@ -18,7 +18,7 @@ import UserTable from "./UserTable";
 export default async function Home() {
 
   return (
-    <div>
+    <main className="dark:bg-black min-h-screen">
       <div className="text-center w-full flex justify-center pt-10">
         <Link href="/">
           <Image
@@ -32,6 +32,6 @@ export default async function Home() {
         </Link>
       </div>
       <UserTable />
-    </div>
+    </main>
   );
 }

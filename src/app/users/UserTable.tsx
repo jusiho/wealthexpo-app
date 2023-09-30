@@ -18,7 +18,7 @@ export default function UserTable() {
 
   return (
     <>
-      <p className="text-lg text-center font-bold m-5">
+      <p className="dark:text-white text-lg text-center font-bold m-5">
         Lista de registrados {cant}
       </p>
       <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
