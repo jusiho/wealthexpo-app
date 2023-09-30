@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
+// Titulo de la pagina que aparece en el navegador barra de arriba
+export const metadata = {
+  title: "Wealth Expo LA | App Web Oficial",
+  description: "Wealth Expo es el encuentro de trading y mercados financieros en Latinoamérica. Conecta con tus potenciales y actuales clientes en México, Colombia y Perú.",
+};
+
 export default function Home() {
   return (
     <main className="dark:bg-black flex min-h-screen flex-col items-center justify-between p-24">
@@ -8,7 +14,7 @@ export default function Home() {
         
       </div>
 
-      <div className="z-20 relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] ">
+      <div className="z-20 relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-[#03fc5f] after:via-[#03ff81] after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-[#03ff81] before:dark:opacity-10 after:dark:from-[#03ff81] after:dark:via-[#03ff81] after:dark:opacity-40 before:lg:h-[360px] ">
         <Image
           className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] "
           src="/landing/wealthexpo.png"
@@ -48,7 +54,7 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
+            Conoce a nuestros patrocinadores
           </p>
         </Link>
 

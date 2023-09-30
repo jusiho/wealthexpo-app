@@ -14,6 +14,11 @@ import UserTable from "./UserTable";
 
 //   return res.json();
 // }
+export const metadata = {
+  title: "Wealth Expo LA | App Web Oficial",
+  description: "Wealth Expo es el encuentro de trading y mercados financieros en Latinoamérica. Conecta con tus potenciales y actuales clientes en México, Colombia y Perú.",
+};
+
 
 export default async function Home() {
 
