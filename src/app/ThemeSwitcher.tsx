@@ -7,8 +7,9 @@ export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-
+  // iniciar con tema dark por defecto
   useEffect(() => {
+    setTheme("dark");
     setMounted(true);
   }, []);
 
@@ -16,6 +17,7 @@ export const ThemeSwitcher = () => {
   if (!mounted) {
     return null;
   }
+
 
 
   return (
