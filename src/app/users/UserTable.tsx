@@ -8,6 +8,8 @@ export default function UserTable() {
   const [cant, serialized] = useState(0);
 
   useEffect(() => {
+    console.log("env ", process.env.NEXT_PUBLIC_URL_LOCAL);
+    
     const fetchUsers = async () => {
       fetch(`${process.env.NEXT_PUBLIC_URL_LOCAL}/api/orders`)
         .then((res) => res.json())
