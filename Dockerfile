@@ -10,6 +10,6 @@ COPY . .
 
 RUN npm run build
 
-COPY .next ./.next
+COPY next.config.js ./next.config.js
 
 CMD ["npm", "run", "dev"]
