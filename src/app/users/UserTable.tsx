@@ -30,9 +30,6 @@ export default function UserTable() {
       keepPreviousData: true,
     }
   );
-  console.log(data);
-  console.log(data?.total_registros);
-  console.log(data?.total_registros);
 
   const pages = useMemo(() => {
     return data?.total_registros
