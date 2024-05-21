@@ -14,7 +14,23 @@ import {
 } from "@nextui-org/react";
 import useSWR from "swr";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) =>
+  fetch(url).then(async (res) => {
+    const resJson = await res.json();
+
+    const transformedData = resJson.data
+      .filter((item: any) => item.state === "1")
+      .map((item: any) => {
+        return {
+          ...item,
+          state: item.state === "1" ? "activo" : "inactivo",
+        };
+      });
+
+    const total_registros = resJson.total_registros;
+
+    return { data: transformedData, total_registros };
+  });
 
 // Componente para la tabla de usuarios
 export default function UserTable() {

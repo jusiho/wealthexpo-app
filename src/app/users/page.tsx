@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import UserTable from "./UserTable";
+import SwrProvider from "../Providers/SwrProvider";
 
 // async function fetchOrders() {
 //   const res = await fetch(`${process.env.NEXT_PUBLIC_URL_LOCAL}/api/orders`);
@@ -16,27 +17,28 @@ import UserTable from "./UserTable";
 // }
 export const metadata = {
   title: "Wealth Expo LA | App Web Oficial",
-  description: "Wealth Expo es el encuentro de trading y mercados financieros en Latinoamérica. Conecta con tus potenciales y actuales clientes en México, Colombia y Perú.",
+  description:
+    "Wealth Expo es el encuentro de trading y mercados financieros en Latinoamérica. Conecta con tus potenciales y actuales clientes en México, Colombia y Perú.",
 };
 
-
 export default async function Home() {
-
   return (
-    <main className="dark:bg-black min-h-screen">
-      <div className="text-center w-full flex justify-center pt-10">
-        <Link href="/">
-          <Image
-            className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] "
-            src="/landing/wealthexpo.png"
-            alt="Next.js Logo"
-            width={250}
-            height={100}
-            priority
-          />
-        </Link>
-      </div>
-      <UserTable />
-    </main>
+    <SwrProvider>
+      <main className="dark:bg-black min-h-screen">
+        <div className="text-center w-full flex justify-center pt-10">
+          <Link href="/">
+            <Image
+              className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
+              src="/landing/wealthexpo.png"
+              alt="Next.js Logo"
+              width={250}
+              height={100}
+              priority
+            />
+          </Link>
+        </div>
+        <UserTable />
+      </main>
+    </SwrProvider>
   );
 }

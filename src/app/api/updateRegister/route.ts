@@ -1,23 +1,25 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-export async function GET(request: Request) {
-  // obetener dato de la url
-  const url = new URL(request.url);
-  const page = url.searchParams.get("page");
-  const perPage = url.searchParams.get("perPage");
-  const search = url.searchParams.get("search");
+export async function POST(request: Request) {
+  // obetener dato POST
+  const body = await request.json();
+  const { id_register, state } = body;
 
   const requestOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      id_register: `${id_register}`,
+      state: `${state}`,
+    }),
   };
 
   try {
     const res = await fetch(
-      `${process.env.API_URL}/wp-json/miplugin/v1/eventos?per_page=${perPage}&page=${page}&search=${search}`,
+      `${process.env.API_URL}/wp-json/myplugin/v1/events/update`,
       requestOptions
     );
 
