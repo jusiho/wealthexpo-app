@@ -18,34 +18,37 @@ import {
 import { SearchIcon } from "../Components/SearchIcon";
 import useSWR from "swr";
 import Swal from "sweetalert2";
+import { invoiceTemplate } from "../_utils/templateEmail/invoiceTemplate";
 
 const columns = [
   { name: "ID", uid: "id_register", sortable: true },
+  { name: "TOKEN", uid: "id_unique", sortable: true },
   { name: "NOMBRE", uid: "name", sortable: true },
   { name: "APELLIDO", uid: "lastname", sortable: true },
   { name: "EMAIL", uid: "email", sortable: true },
   { name: "TELEFONO", uid: "phone", sortable: true },
   { name: "EMPRESA", uid: "company", sortable: true },
   { name: "PAIS", uid: "country", sortable: true },
-  { name: "NIVEL CONOCIMENTO", uid: "know-exp", sortable: true },
+  { name: "NIVEL CONOCIMENTO", uid: "know_exp", sortable: true },
   { name: "NIVEL EXPERIENCIA", uid: "level_exp", sortable: true },
   { name: "CATEGORIA", uid: "category", sortable: true },
   { name: "EDICION", uid: "edition", sortable: true },
   { name: "TIPO", uid: "type_ticket", sortable: true },
   { name: "ESTADO", uid: "state", sortable: true },
-  { name: "ACCIONES", uid: "actions", sortable: true }
+  { name: "ACCIONES", uid: "actions", sortable: true },
 ];
 
 const INITIAL_VISIBLE_COLUMNS = [
   "id_register",
+  "id_unique",
   "name",
   "lastname",
   "email",
   "phone",
   "company",
   "country",
-  'knowledge',
-  'know-exp',
+  "knowledge",
+  "know_exp",
   "level_exp",
   "category",
   "edition",
@@ -73,7 +76,50 @@ interface SortDescriptor {
 
 type SortDirection = "ascending" | "descending";
 
+type sendEmailConfirmationProps = {
+  emailTo: string;
+  htmlResponse: string;
+};
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+async function sendEmailConfirmation({
+  emailTo,
+  htmlResponse,
+}: sendEmailConfirmationProps) {
+  console.log("Sending email to:", emailTo);
+  console.log(`${process.env.NEXT_PUBLIC_URL_LOCAL}/api/sendNodemailer`);
+
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL_LOCAL}/api/sendNodemailer`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "Wealth Expo Peru 2024 <info@wealthexpo.la>",
+          emailFrom: "info@wealthexpo.la",
+          emailTo,
+          replyTo: "no-reply@wealthexpo.la",
+          subject: "Registration Confirmed (General Ticket)",
+          html: htmlResponse,
+        }),
+      }
+    );
+    console.log("Response:", response);
+
+    if (response.ok) {
+      const responseData = await response.json();
+      console.log("Email sent successfully:", responseData);
+    } else {
+      console.error("Failed to send email:", response.status);
+    }
+  } catch (error) {
+    console.error("Error in sending email:", error);
+  }
+}
 
 export default function TableWith() {
   const [loading, setLoading] = useState(false);
@@ -104,8 +150,6 @@ export default function TableWith() {
       keepPreviousData: true,
     }
   );
-  console.log(users);
-  
 
   const pages = users?.total_pages;
 
@@ -166,7 +210,9 @@ export default function TableWith() {
     }
   }, [loading]);
 
-  const handleButtonApprove = async (userId: string) => {
+  const handleButtonApprove = async (user: any) => {
+    console.log("Aprobar");
+
     setLoading(true);
     try {
       const response = await fetch(
@@ -177,13 +223,39 @@ export default function TableWith() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id_register: userId,
+            id_register: user.id_register,
             state: "1",
           }),
         }
       );
       if (response.status === 200) {
         const data = await response.json();
+        console.log(data);
+        console.log(user);
+
+        const emailTo = user.email;
+        const emailData = {
+          id_register: user.id_register,
+          id_unique: user.id_unique,
+          name: user.name,
+          lastname: user.lastname,
+          email: user.email,
+          phone: user.phone,
+          company: user.company,
+          country: user.country,
+          know_exp: user.know_exp,
+          level_exp: user.level_exp,
+          category: user.category,
+          edition: user.edition,
+          type_ticket: user.type_ticket,
+        };
+        console.log(emailData);
+
+        const htmlResponse = await invoiceTemplate({ emailData });
+        console.log(htmlResponse);
+
+        // Función para enviar el correo electrónico de forma asincrónica
+        sendEmailConfirmation({ emailTo, htmlResponse });
 
         // Code to handle successful response
       } else {
@@ -192,11 +264,13 @@ export default function TableWith() {
     } catch (error) {
       // Code to handle error
     } finally {
+      console.log("Finalmente");
+      
       setLoading(false);
       mutate();
     }
 
-    console.log("Aprobar", userId);
+    console.log("Aprobar", user);
   };
 
   const renderCell = useCallback((user: any, columnKey: any) => {
@@ -217,9 +291,7 @@ export default function TableWith() {
       case "actions":
         return (
           <div className="flex gap-2">
-            <Button onClick={() => handleButtonApprove(user.id_register)}>
-              Aprobar
-            </Button>
+            <Button onClick={() => handleButtonApprove(user)}>Aprobar</Button>
             <Button>Rechazar</Button>
           </div>
         );
