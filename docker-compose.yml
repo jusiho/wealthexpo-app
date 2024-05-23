@@ -6,3 +6,5 @@ services:
     container_name: nextjs13-wealth
     ports:
       - "3002:3000"
+    env_file:
+      - .env
