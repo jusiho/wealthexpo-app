@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 const nodemailer = require("nodemailer");
 
 export async function POST(req: Request) {
-  const { from, emailFrom, emailTo, subject, text, html } = await req.json();
+  const { from, emailFrom, emailTo, replyTo, subject, text, html } =
+    await req.json();
   console.log("emailFrom", emailFrom);
   console.log("emailTo", emailTo);
   console.log("subject", subject);
@@ -44,6 +45,7 @@ export async function POST(req: Request) {
     const info = await transporter.sendMail({
       from: from, // sender address
       to: emailTo, // list of receivers
+      replyTo: replyTo,
       subject: subject, // Subject line
       // text: "Hello a ver?", // plain text body
       ...(text ? { text } : {}), // Add text if available

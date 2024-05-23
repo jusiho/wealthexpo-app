@@ -17,7 +17,6 @@ export interface PropsHtml {
 }
 
 export async function invoiceTemplate({ emailData }: PropsHtml) {
-  console.log("emailData", emailData);
 
   const url_base = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${emailData.id_unique}`;
 

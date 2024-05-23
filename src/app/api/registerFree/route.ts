@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 export async function GET(request: Request) {
+  console.log("process.env.API_URL : ", process.env.API_URL);
+  
   // obetener dato de la url
   const url = new URL(request.url);
   const page = url.searchParams.get("page");
@@ -20,6 +22,8 @@ export async function GET(request: Request) {
       `${process.env.API_URL}/wp-json/miplugin/v1/eventos?per_page=${perPage}&page=${page}&search=${search}`,
       requestOptions
     );
+    console.log("res : ", res);
+    
 
     if (!res.ok) {
       throw new Error(`Error fetching order count: ${res.statusText}`);
@@ -29,6 +33,8 @@ export async function GET(request: Request) {
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
+    console.log("error --------------> ", error);
+    
     return NextResponse.json(
       {
         error,
