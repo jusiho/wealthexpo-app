@@ -1,28 +1,35 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { AuthOptions } from "../auth/[...nextauth]/route";
+import { getServerSession } from "next-auth/next";
 
 export async function GET(request: Request) {
-  console.log("process.env.API_URL : ", process.env.API_URL);
-  
+  const session = await getServerSession(AuthOptions);
+  const token = session?.user.token;
+
   // obetener dato de la url
   const url = new URL(request.url);
   const page = url.searchParams.get("page");
   const perPage = url.searchParams.get("perPage");
   const search = url.searchParams.get("search");
+  const endpoint = url.searchParams.get("endpoint");
 
   const requestOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   };
 
+  console.log(`${process.env.API_URL}/wp-json/myplugin/v1/${endpoint}?per_page=${perPage}&page=${page}&search=${search}`);
+  
   try {
     const res = await fetch(
-      `${process.env.API_URL}/wp-json/miplugin/v1/eventos?per_page=${perPage}&page=${page}&search=${search}`,
+      `${process.env.API_URL}/wp-json/myplugin/v1/${endpoint}?per_page=${perPage}&page=${page}&search=${search}`,
       requestOptions
     );
-    console.log("res : ", res);
+    console.log(res);
     
 
     if (!res.ok) {
@@ -33,8 +40,6 @@ export async function GET(request: Request) {
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
-    console.log("error --------------> ", error);
-    
     return NextResponse.json(
       {
         error,

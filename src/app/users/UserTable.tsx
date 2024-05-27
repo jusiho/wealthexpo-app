@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import { signOut, useSession } from "next-auth/react";
 
 import { useCallback, useMemo, useState } from "react";
 import {
@@ -21,6 +22,7 @@ import Swal from "sweetalert2";
 
 const columns = [
   { name: "ID", uid: "id_register", sortable: true },
+  { name: "TOKEN", uid: "id_unique", sortable: true },
   { name: "NOMBRE", uid: "name", sortable: true },
   { name: "APELLIDO", uid: "lastname", sortable: true },
   { name: "EMAIL", uid: "email", sortable: true },
@@ -32,10 +34,13 @@ const columns = [
   { name: "CATEGORIA", uid: "category", sortable: true },
   { name: "EDICION", uid: "edition", sortable: true },
   { name: "TIPO", uid: "type_ticket", sortable: true },
+  { name: "ESTADO", uid: "state", sortable: true },
+  { name: "ACCIONES", uid: "actions", sortable: true },
 ];
 
 const INITIAL_VISIBLE_COLUMNS = [
   "id_register",
+  "id_unique",
   "name",
   "lastname",
   "email",
@@ -55,11 +60,21 @@ const statusOptions = [
   { name: "Paused", uid: "paused" },
   { name: "Vacation", uid: "vacation" },
 ];
+type StatusColorMap = {
+  [key: string]:
+    | "default"
+    | "success"
+    | "danger"
+    | "warning"
+    | "primary"
+    | "secondary"
+    | undefined;
+};
 
-const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
+const statusColorMap: StatusColorMap = {
+  "1": "success",
+  "3": "danger",
+  "0": "warning",
 };
 
 interface SortDescriptor {
@@ -74,26 +89,27 @@ type sendEmailConfirmationProps = {
   htmlResponse: string;
 };
 
-const fetcher = (url: string) =>
-  fetch(url).then(async (res) => {
-    const resJson = await res.json();
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-    const transformedData = resJson.data
-      .filter((item: any) => item.state === "1")
-      .map((item: any) => {
-        return {
-          ...item,
-          state: item.state === "1" ? "activo" : "inactivo",
-        };
-      });
+interface User {
+  id_register: string;
+  id_unique: string;
+  name: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  company: string;
+  country: string;
+  know_exp: string;
+  level_exp: string;
+  category: string;
+  edition: string;
+  type_ticket: string;
+  state: string;
+  actions?: string;
+}
 
-    const total_records = resJson.total_records;
-
-    return { data: transformedData, total_records };
-  });
-
-// Componente para la tabla de usuarios
-export default function UserTable() {
+export default function UseTable() {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [filterValue, setFilterValue] = useState("");
@@ -116,14 +132,14 @@ export default function UserTable() {
     isLoading,
     mutate,
   } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL_LOCAL}/api/registerFree?page=${page}&perPage=${rowsPerPage}&search=${search}`,
+    `${process.env.NEXT_PUBLIC_URL_LOCAL}/api/registerFree?page=${page}&perPage=${rowsPerPage}&search=${search}&endpoint=records`,
     fetcher,
     {
       keepPreviousData: true,
     }
   );
 
-  const pages = users?.total_records;
+  const pages = users?.total_pages;
 
   const hasSearchFilter = Boolean(filterValue);
 
@@ -182,21 +198,138 @@ export default function UserTable() {
     }
   }, [loading]);
 
-  const renderCell = useCallback((user: any, columnKey: any) => {
-    const cellValue = user[columnKey];
+  const handleButtonApprove = async (user: User) => {
+    console.log("Aprobar");
+
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL_LOCAL}/api/updateRegister`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id_register: user.id_register,
+            state: "1",
+          }),
+        }
+      );
+      if (response.status === 200) {
+        const data = await response.json();
+        // console.log(data);
+        // console.log(user);
+
+        // const emailTo = user.email;
+        // const emailData = {
+        //   id_register: user.id_register,
+        //   id_unique: user.id_unique,
+        //   name: user.name,
+        //   lastname: user.lastname,
+        //   email: user.email,
+        //   phone: user.phone,
+        //   company: user.company,
+        //   country: user.country,
+        //   know_exp: user.know_exp,
+        //   level_exp: user.level_exp,
+        //   category: user.category,
+        //   edition: user.edition,
+        //   type_ticket: user.type_ticket,
+        // };
+        // console.log(emailData);
+
+        // const htmlResponse = await invoiceTemplate({ emailData });
+        // console.log(htmlResponse);
+
+        // // Función para enviar el correo electrónico de forma asincrónica
+        // sendEmailConfirmation({ emailTo, htmlResponse });
+
+        // Code to handle successful response
+      } else {
+        // Code to handle unsuccessful response
+      }
+    } catch (error) {
+      // Code to handle error
+    } finally {
+      console.log("Finalmente");
+
+      setLoading(false);
+      mutate();
+    }
+
+    console.log("Aprobar", user);
+  };
+
+  const handleButtonRefuse = async (user: User) => {
+    console.log("Aprobar");
+
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL_LOCAL}/api/updateRegister`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            id_register: user.id_register,
+            state: "3",
+          }),
+        }
+      );
+      if (response.status === 200) {
+        const data = await response.json();
+        // console.log(data);
+        // console.log(user);
+
+        // const emailTo = user.email;
+        // const emailData = {
+        //   id_register: user.id_register,
+        //   id_unique: user.id_unique,
+        //   name: user.name,
+        //   lastname: user.lastname,
+        //   email: user.email,
+        //   phone: user.phone,
+        //   company: user.company,
+        //   country: user.country,
+        //   know_exp: user.know_exp,
+        //   level_exp: user.level_exp,
+        //   category: user.category,
+        //   edition: user.edition,
+        //   type_ticket: user.type_ticket,
+        // };
+        // console.log(emailData);
+
+        // const htmlResponse = await invoiceTemplate({ emailData });
+        // console.log(htmlResponse);
+
+        // // Función para enviar el correo electrónico de forma asincrónica
+        // sendEmailConfirmation({ emailTo, htmlResponse });
+
+        // Code to handle successful response
+      } else {
+        // Code to handle unsuccessful response
+      }
+    } catch (error) {
+      // Code to handle error
+    } finally {
+      console.log("Finalmente");
+
+      setLoading(false);
+      mutate();
+    }
+
+    console.log("Aprobar", user);
+  };
+
+  const renderCell = useCallback((user: User, columnKey: any) => {
+    const cellValue = user[columnKey as keyof User];
 
     switch (columnKey) {
-      case "state":
-        return (
-          <Chip
-            className="capitalize border-none gap-1 text-default-600"
-            color={user.state == "1" ? "success" : "danger"}
-            size="sm"
-            variant="dot"
-          >
-            {cellValue == "1" ? "Aprobado" : "Proceso"}
-          </Chip>
-        );
+      // ...
 
       default:
         return cellValue;
