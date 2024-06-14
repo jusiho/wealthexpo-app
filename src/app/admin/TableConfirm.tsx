@@ -133,6 +133,7 @@ export default function TableWith() {
     direction: "ascending",
   });
   const [page, setPage] = useState(1);
+  const [checked, setChecked] = React.useState<string[]>([]);
 
   const {
     data: users,
@@ -385,27 +386,25 @@ export default function TableWith() {
 
   const topContent = useMemo(() => {
     return (
-      <div className="flex flex-col gap-4 w-full">
-        <div className="flex justify-between gap-3 items-end">
-          <Input
-            isClearable
-            classNames={{
-              base: "w-full sm:max-w-[44%]",
-              inputWrapper: "border-1 ",
-              input: "border-none",
-            }}
-            placeholder="Busqueda por nombre..."
-            size="sm"
-            startContent={<SearchIcon className="text-default-300" />}
-            value={filterValue}
-            variant="bordered"
-            onClear={() => setFilterValue("")}
-            onValueChange={onSearchChange}
-          />
-        </div>
-        <div>
+      <div className="flex justify-between gap-4 w-full">
+        <Input
+          isClearable
+          classNames={{
+            base: "w-full sm:max-w-[44%]",
+            inputWrapper: "border-1 ",
+            input: "border-none",
+          }}
+          placeholder="Busqueda por nombre..."
+          size="sm"
+          startContent={<SearchIcon className="text-default-300" />}
+          value={filterValue}
+          variant="bordered"
+          onClear={() => setFilterValue("")}
+          onValueChange={onSearchChange}
+        />
+        <div className="flex gap-4">
           <button
-            className="bg-primary text-white rounded-md px-4 py-2"
+            className="bg-danger-50 text-white rounded-md px-4 py-2"
             onClick={() => signOut()}
           >
             Salir
@@ -455,8 +454,57 @@ export default function TableWith() {
   const loadingState =
     isLoading || users?.total_records === 0 ? "loading" : "idle";
 
+  const handleMasivo = async () => {
+    console.log("Aprobar masivo :", checked);
+    setLoading(true);
+    if (checked.length > 0) {
+      try {
+        await Promise.all(
+          checked.map(async (user) => {
+            try {
+              const response = await fetch(
+                `${process.env.NEXT_PUBLIC_URL_LOCAL}/api/updateRegister`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    id_register: user,
+                    state: "1",
+                  }),
+                }
+              );
+              console.log("response : ", response);
+
+              // Aquí podrías manejar la respuesta, como verificar el estado HTTP o parsear JSON.
+            } catch (error) {
+              console.error("Error al actualizar el registro:", user, error);
+              // Manejar cada error individualmente
+            }
+          })
+        );
+      } catch (error) {
+        // Code to handle error
+      } finally {
+        // Deseleccionar
+        setSelectedKeys(new Set([]));
+        setChecked([]);
+
+        setLoading(false);
+        mutate();
+      }
+    }
+  };
+
   return (
     <div>
+      <button
+        className="bg-primary text-white rounded-md px-4 py-2"
+        onClick={handleMasivo}
+      >
+        Aprobar masivo
+      </button>
       <Table
         aria-label="Example table with custom cells, pagination and sorting"
         isHeaderSticky
@@ -471,6 +519,17 @@ export default function TableWith() {
         topContent={topContent}
         topContentPlacement="outside"
         onSelectionChange={(key: string | Set<any>) => {
+          console.log(key as Set<any>);
+          if (key instanceof Set) {
+            console.log(key);
+
+            // Usando el operador de propagación para convertir el Set en un array
+            let arrayFromSet = Array.from(key);
+            console.log(arrayFromSet);
+
+            setChecked(arrayFromSet);
+            console.log(arrayFromSet);
+          }
           setSelectedKeys(key);
         }}
         onSortChange={(key: any) => setSortDescriptor(key)}

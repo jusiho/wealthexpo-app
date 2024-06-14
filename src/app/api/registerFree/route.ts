@@ -6,7 +6,8 @@ import { getServerSession } from "next-auth/next";
 export async function GET(request: Request) {
   const session = await getServerSession(AuthOptions);
   const token = session?.user.token;
-
+  console.log("token --------> : ", token);
+  
   // obetener dato de la url
   const url = new URL(request.url);
   const page = url.searchParams.get("page");
@@ -22,7 +23,6 @@ export async function GET(request: Request) {
     },
   };
 
-  console.log(`${process.env.API_URL}/wp-json/myplugin/v1/${endpoint}?per_page=${perPage}&page=${page}&search=${search}`);
   
   try {
     const res = await fetch(
