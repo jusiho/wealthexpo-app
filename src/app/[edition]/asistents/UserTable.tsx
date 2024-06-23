@@ -16,7 +16,7 @@ import {
   Chip,
   Button,
 } from "@nextui-org/react";
-import { SearchIcon } from "../Components/SearchIcon";
+import { SearchIcon } from "../../Components/SearchIcon";
 import useSWR from "swr";
 import Swal from "sweetalert2";
 
