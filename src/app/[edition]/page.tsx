@@ -34,28 +34,18 @@ export default async function Page({ params }: Props) {
               Sponsors
             </Link>
             <Link
-              href={`/speakers`}
+              href={`/users`}
               className="bg-gray-700 h-24 flex shadow-lg items-center justify-center"
             >
               Asistentes
             </Link>
             <Link
-              href={`/speakers`}
+              href={`https://wealthexpo.la/peru/agenda`}
               className="bg-gray-700 h-24 flex shadow-lg items-center justify-center"
             >
               Agenda
             </Link>
           </div>
-
-          <div className="flex items-center justify-center mt-10 space-x-3 md:hidden">
-            <div className="w-2.5 h-2.5 rounded-full bg-blue-600 block"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-gray-300 block"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-gray-300 block"></div>
-          </div>
-
-          <p className="mt-10 text-base text-center text-black md:mt-20 p-6 py-3 border w-72 border-black rounded-full mx-auto">
-            and, more companies
-          </p>
         </div>
       </section>
     </>
