@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "./providers";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import AuthContext from "./Providers/NextAuth";
+import IaChat from "./IaChat";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </AuthContext>
+        <IaChat />
       </body>
     </html>
   );

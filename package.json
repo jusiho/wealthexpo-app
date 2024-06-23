@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^0.0.33",
     "@nextui-org/react": "^2.2.10",
     "@types/node": "20.6.2",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
+    "ai": "^3.2.5",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.1",
     "framer-motion": "^11.0.24",
@@ -24,7 +26,8 @@
     "react-dom": "18.2.0",
     "sweetalert2": "^11.11.0",
     "swr": "^2.2.5",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",

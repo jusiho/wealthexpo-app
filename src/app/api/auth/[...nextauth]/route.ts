@@ -94,7 +94,24 @@ export const AuthOptions = {
       console.log("token : ", token);
 
       if (token) {
+        const responseData = await fetch(
+          `${process.env.API_URL}/wp-json/myplugin/v1/me`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token.token}`,
+            },
+          }
+        );
+        const dataUser = await responseData.json();
+        console.log("dataUesr : ", dataUser);
+
         session.user = token;
+        session.user.id = dataUser.ID;
+        session.user.first_name = dataUser.first_name;
+        session.user.last_name = dataUser.last_name;
+        session.user.roles = dataUser.roles;
       }
       // Add property to session, like an access_token from a provider.
 

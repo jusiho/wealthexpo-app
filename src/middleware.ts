@@ -7,7 +7,7 @@ const secret = process.env.NEXTAUTH_SECRET;
 const allowedOrigins = [
   "http://127.0.0.1:3000",
   "http://localhost:300",
-  "https://app.weatlhexpo.com"
+  "https://app.weatlhexpo.com",
 ];
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
@@ -64,8 +64,5 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 }
 
 export const config = {
-  matcher: [
-    "/admin",
-    "/login",
-  ],
+  matcher: ["/admin", "/login"],
 };
