@@ -14,11 +14,8 @@ export default async function Page() {
     notFound();
   }
 
-  if (session && session.user.role !== "admin") {
-    notFound();
-  }
-
   const { roles } = session.user;
+  console.log("roles", roles);
 
   const isAdmin = roles.some((role: string) => role === "administrator");
 
