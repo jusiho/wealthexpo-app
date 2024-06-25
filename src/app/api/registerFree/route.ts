@@ -14,9 +14,12 @@ export async function GET(request: Request) {
   const perPage = url.searchParams.get("perPage");
   const search = url.searchParams.get("search");
   const endpoint = url.searchParams.get("endpoint");
+  const edition = url.searchParams.get("edition");
+  console.log(token);
+  
 
   const requestOptions = {
-    method: "POST",
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -26,7 +29,7 @@ export async function GET(request: Request) {
   
   try {
     const res = await fetch(
-      `${process.env.API_URL}/wp-json/myplugin/v1/${endpoint}?per_page=${perPage}&page=${page}&search=${search}`,
+      `${process.env.API_URL}/wp-json/myplugin/v1/${endpoint}?per_page=${perPage}&page=${page}&page=${page}&edition=${edition}&search=${search}`,
       requestOptions
     );
     console.log(res);
@@ -37,7 +40,8 @@ export async function GET(request: Request) {
     }
 
     const response = await res.json();
-
+    console.log(response);
+    
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
     return NextResponse.json(

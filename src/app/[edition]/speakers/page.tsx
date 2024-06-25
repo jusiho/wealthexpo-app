@@ -9,6 +9,7 @@ type Props = {
     edition: string;
   };
 };
+
 export default async function Page({ params }: Props) {
   const { edition } = params;
   if (!["peru", "colombia", "mexico"].includes(edition)) {
