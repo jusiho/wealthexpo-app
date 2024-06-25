@@ -79,7 +79,7 @@ export default function FormLogin() {
           if (pathr) {
             router.push(pathr);
           } else {
-            router.push("/admin");
+            router.push("/");
           }
         } else {
           setPageSate((old) => ({ ...old, error: response.error }));

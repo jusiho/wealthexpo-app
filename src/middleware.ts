@@ -44,7 +44,7 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
     return NextResponse.redirect(url);
   } else {
     if (requestPage === "/login") {
-      url.pathname = "/cursos";
+      url.pathname = "/";
       return NextResponse.redirect(url);
     }
   }

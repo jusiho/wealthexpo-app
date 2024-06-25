@@ -2,9 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 import SwrProvider from "../Providers/SwrProvider";
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { AuthOptions } from "../api/auth/[...nextauth]/route";
 const UserTable = dynamic(() => import("./TableConfirm"), { ssr: false });
 
-export default function Page() {
+export default async function Page() {
+  const session = await getServerSession(AuthOptions);
+
+  if (!session) {
+    notFound();
+  }
+
+  if (session && session.user.role !== "admin") {
+    notFound();
+  }
+
+  const { roles } = session.user;
+
+  const isAdmin = roles.some((role: string) => role === "administrator");
+
+  if (!isAdmin) {
+    notFound();
+  }
+
   return (
     <SwrProvider>
       <main className="dark:bg-black">

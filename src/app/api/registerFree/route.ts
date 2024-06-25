@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const session = await getServerSession(AuthOptions);
   const token = session?.user.token;
   console.log("token --------> : ", token);
-  
+
   // obetener dato de la url
   const url = new URL(request.url);
   const page = url.searchParams.get("page");
@@ -16,7 +16,6 @@ export async function GET(request: Request) {
   const endpoint = url.searchParams.get("endpoint");
   const edition = url.searchParams.get("edition");
   console.log(token);
-  
 
   const requestOptions = {
     method: "GET",
@@ -26,14 +25,12 @@ export async function GET(request: Request) {
     },
   };
 
-  
   try {
     const res = await fetch(
       `${process.env.API_URL}/wp-json/myplugin/v1/${endpoint}?per_page=${perPage}&page=${page}&page=${page}&edition=${edition}&search=${search}`,
       requestOptions
     );
     console.log(res);
-    
 
     if (!res.ok) {
       throw new Error(`Error fetching order count: ${res.statusText}`);
@@ -41,7 +38,7 @@ export async function GET(request: Request) {
 
     const response = await res.json();
     console.log(response);
-    
+
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
     return NextResponse.json(
