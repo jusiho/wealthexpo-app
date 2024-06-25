@@ -5,6 +5,7 @@ import { ThemeProvider } from "./providers";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import AuthContext from "./Providers/NextAuth";
 import IaChat from "./IaChat";
+import { cn } from "./_utils/tailwindMerge";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn("dark", inter.className)}>
         <AuthContext>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {/* <ThemeSwitcher /> */}
