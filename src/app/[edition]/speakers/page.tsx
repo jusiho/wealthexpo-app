@@ -22,7 +22,7 @@ export default async function Page({ params }: Props) {
   const token = session.user.token;
 
   const responseSpeakers = await fetch(
-    "https://wealthexpo.la/wp-json/myplugin/v1/speakers?page=1&per_page=50",
+    `${process.env.NEXT_PUBLIC_API_URL}/wp-json/myplugin/v1/speakers?page=1&per_page=50`,
     {
       method: "GET",
       headers: {

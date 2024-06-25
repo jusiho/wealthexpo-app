@@ -24,7 +24,7 @@ export default async function Page({ params }: Props) {
   const token = session.user.token;
 
   const responseSponsors = await fetch(
-    "https://wealthexpo.la/wp-json/myplugin/v1/sponsors?page=1&per_page=50",
+    `${process.env.NEXT_PUBLIC_API_URL}/wp-json/myplugin/v1/sponsors?page=1&per_page=50`,
     {
       method: "GET",
       headers: {
@@ -40,8 +40,6 @@ export default async function Page({ params }: Props) {
   const sponsorsFilter = sponsors.filter((sponsor: any) =>
     sponsor.edicion.includes(edition)
   );
-
-  console.log(sponsorsFilter);
 
   return (
     <>

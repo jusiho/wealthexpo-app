@@ -1,5 +1,6 @@
 // imports
 import NextAuth from "next-auth";
+import { jwtDecode } from "jwt-decode";
 
 // importing providers
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -81,8 +82,22 @@ export const AuthOptions = {
       console.log("account : ", account);
 
       // Initial sign in
-      if (user) {
+      if (account) {
         console.log("user : ", user);
+
+        token = { ...token, ...user };
+      } else {
+        console.log("user : ", token);
+
+        const jwtPayload: { exp: number } = jwtDecode(token.token);
+        console.log("jwtPayload", jwtPayload);
+
+        let currentDate = new Date();
+
+        // Validate time session
+        if (jwtPayload.exp * 1000 < currentDate.getTime()) {
+          console.log("Token expired");
+        }
 
         token = { ...token, ...user };
       }
