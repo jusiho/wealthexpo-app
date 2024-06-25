@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import { signOut, useSession } from "next-auth/react";
+import * as XLSX from "xlsx";
 
 import { useCallback, useMemo, useState } from "react";
 import {
@@ -146,6 +147,7 @@ export default function TableWith() {
       keepPreviousData: true,
     }
   );
+  console.log(users?.data);
 
   const pages = users?.total_pages;
 
@@ -497,6 +499,34 @@ export default function TableWith() {
     }
   };
 
+  const onGetExportProduct = async (title?: string, worksheetname?: string) => {
+    try {
+      setLoading(true);
+      // const response = await fetch("https://fakestoreapi.com/products");
+      // Check if the action result contains data and if it's an array
+      if (users?.data && Array.isArray(users?.data)) {
+        console.log(users?.data);
+
+        const dataToExport = users?.data;
+        console.log(dataToExport);
+
+        // Create Excel workbook and worksheet
+        const workbook = XLSX.utils.book_new();
+        const worksheet = XLSX.utils?.json_to_sheet(dataToExport);
+        XLSX.utils.book_append_sheet(workbook, worksheet, worksheetname);
+        // Save the workbook as an Excel file
+        XLSX.writeFile(workbook, `${title}.xlsx`);
+        console.log(`Exported data to ${title}.xlsx`);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        console.log("#==================Export Error");
+      }
+    } catch (error: any) {
+      setLoading(false);
+      console.log("#==================Export Error", error.message);
+    }
+  };
   return (
     <div>
       <button
@@ -504,6 +534,12 @@ export default function TableWith() {
         onClick={handleMasivo}
       >
         Aprobar masivo
+      </button>
+      <button
+        className="bg-primary text-white rounded-md px-4 py-2"
+        onClick={() => onGetExportProduct("users", "users")}
+      >
+        Descargar excel
       </button>
       <Table
         aria-label="Example table with custom cells, pagination and sorting"
