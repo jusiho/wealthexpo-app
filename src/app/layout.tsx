@@ -6,6 +6,7 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 import AuthContext from "./Providers/NextAuth";
 import IaChat from "./IaChat";
 import { cn } from "./_utils/tailwindMerge";
+import NavBar from "./NavBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("dark", inter.className)}>
         <AuthContext>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="dark">
             {/* <ThemeSwitcher /> */}
+            <NavBar />
             {children}
           </ThemeProvider>
         </AuthContext>
