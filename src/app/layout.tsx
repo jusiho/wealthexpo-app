@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn("dark", inter.className)}>
+      <body className={inter.className}>
         <AuthContext>
           <ThemeProvider attribute="class" defaultTheme="dark">
             {/* <ThemeSwitcher /> */}
