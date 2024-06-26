@@ -339,8 +339,6 @@ export default function TableWith() {
     const cellValue = user[columnKey as keyof User];
 
     switch (columnKey) {
-      // ...
-
       case "state":
         return (
           <Chip
