@@ -344,7 +344,7 @@ export default function TableWith() {
       case "state":
         return (
           <Chip
-            className="capitalize border-none gap-1 text-default-600"
+            className="capitalize border-none gap-1 "
             color={statusColorMap[user.state as keyof StatusColorMap]}
             size="sm"
             variant="dot"
@@ -440,7 +440,7 @@ export default function TableWith() {
               variant="light"
               onChange={(page) => setPage(page)}
             />
-            <span className="text-small text-default-400">
+            <span className="text-small">
               {selectedKeys === "all"
                 ? "All items selected"
                 : `${(selectedKeys as Set<any>).size} of ${
