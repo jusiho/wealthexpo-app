@@ -26,6 +26,7 @@ export default function NavBar() {
         isBordered
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
+        maxWidth="full"
       >
         <NavbarContent className="sm:hidden" justify="start">
           <NavbarMenuToggle
@@ -52,8 +53,8 @@ export default function NavBar() {
               <Image
                 src="/landing/wealthexpo.png"
                 alt="Logo"
-                width={100}
-                height={100}
+                width={150}
+                height={150}
               />
             </Link>
           </NavbarBrand>
