@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en" className='dark'>
       <body className={inter.className}>
         <AuthContext>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
             {/* <ThemeSwitcher /> */}
             <NavBar />
             {children}
