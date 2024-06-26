@@ -21,16 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className='dark'>
+    <html lang="en" className="dark">
       <body className={inter.className}>
-        <AuthContext>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <AuthContext>
             {/* <ThemeSwitcher /> */}
             <NavBar />
             {children}
-          </ThemeProvider>
-        </AuthContext>
-        <IaChat />
+          </AuthContext>
+          <IaChat />
+        </ThemeProvider>
       </body>
     </html>
   );
