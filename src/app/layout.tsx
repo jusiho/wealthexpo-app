@@ -21,10 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className='dark'>
       <body className={inter.className}>
         <AuthContext>
-          <ThemeProvider attribute="class" defaultTheme="dark">
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
             {/* <ThemeSwitcher /> */}
             <NavBar />
             {children}
