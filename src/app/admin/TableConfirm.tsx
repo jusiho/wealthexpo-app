@@ -362,7 +362,7 @@ export default function TableWith() {
           </div>
         );
       default:
-        return cellValue;
+        return <span className="dark:text-black">{cellValue}</span>;
     }
   }, []);
 
@@ -526,7 +526,7 @@ export default function TableWith() {
     }
   };
   return (
-    <div>
+    <div className="dark">
       <button
         className="bg-primary text-white rounded-md px-4 py-2"
         onClick={handleMasivo}

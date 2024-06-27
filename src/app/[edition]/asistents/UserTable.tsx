@@ -332,7 +332,7 @@ export default function UseTable({ edition }: { edition: string }) {
       // ...
 
       default:
-        return cellValue;
+        return <span className="dark:text-black">{cellValue}</span>;
     }
   }, []);
 
