@@ -362,7 +362,7 @@ export default function TableWith() {
           </div>
         );
       default:
-        return <span className="dark:text-black">{cellValue}</span>;
+        return <span className="dark:text-white">{cellValue}</span>;
     }
   }, []);
 
