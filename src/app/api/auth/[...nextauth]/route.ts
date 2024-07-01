@@ -96,7 +96,10 @@ export const AuthOptions = {
 
         // Validate time session
         if (jwtPayload.exp * 1000 < currentDate.getTime()) {
-          console.log("Token expired");
+          return {
+            ...token,
+            error: "AccessTokenError",
+          };
         }
 
         token = { ...token, ...user };

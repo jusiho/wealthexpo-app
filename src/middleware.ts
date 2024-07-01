@@ -6,7 +6,7 @@ const secret = process.env.NEXTAUTH_SECRET;
 
 const allowedOrigins = [
   "http://127.0.0.1:3000",
-  "http://localhost:300",
+  "http://localhost:3000",
   "https://app.weatlhexpo.com",
 ];
 
@@ -20,7 +20,7 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   // console.log(requestPage);
   const origin = req.headers.get("origin");
 
-  if (origin && allowedOrigins.includes(origin)) {
+  if (origin && !allowedOrigins.includes(origin)) {
     // console.log("Error middleware");
 
     return new NextResponse(null, {

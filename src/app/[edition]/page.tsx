@@ -11,62 +11,6 @@ type Props = {
   };
 };
 
-const sponsors = [
-  {
-    href: "sponsors",
-    svg: (
-      <svg viewBox="0 0 448 512" fill="currentColor" height="3em" width="3em">
-        <path d="M224 0c70.7 0 128 57.3 128 128s-57.3 128-128 128S96 198.7 96 128 153.3 0 224 0zm-14.9 359.2l-18.6-31c-6.4-10.7 1.3-24.2 13.7-24.2h39.5c12.4 0 20.1 13.6 13.7 24.2l-18.6 31 33.4 123.9 39.5-161.2c77.2 12 136.3 78.8 136.3 159.4 0 17-13.8 30.7-30.7 30.7H30.7C13.8 512 0 498.2 0 481.3c0-80.6 59.1-147.4 136.3-159.4l39.5 161.2 33.4-123.9z" />
-      </svg>
-    ),
-    text: "Sponsors",
-  },
-  {
-    href: "speakers",
-    svg: (
-      <svg viewBox="0 0 24 24" fill="currentColor" height="3em" width="3em">
-        <path fill="none" d="M0 0h24v24H0z" />
-        <path d="M12 19h2V6l6.394 2.74a1 1 0 01.606.92V19h2v2H1v-2h2V5.65a1 1 0 01.594-.914l7.703-3.424A.5.5 0 0112 1.77V19z" />
-      </svg>
-    ),
-    text: "Speakers",
-  },
-];
-
-function SponsorBox({
-  href,
-  svg,
-  isSponsor,
-  text,
-}: {
-  href: string;
-  svg: JSX.Element;
-  isSponsor: boolean;
-  text: string;
-}) {
-  return isSponsor ? (
-    <Link
-      href={href}
-      className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
-    >
-      {svg} {text}
-    </Link>
-  ) : (
-    <div className="relative bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 group h-32 flex flex-col  shadow-lg items-center justify-center gap-2">
-      {svg} {text}
-      <div className="absolute bottom-0 flex gap-2">
-        <Link
-          href={"https://wealthexpo.la/sponsors-contacto/"}
-          target="_blank"
-          className=" items-center flex px-4 mb-2 justify-center bg-red-500 text-white  h-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out rounded transform hover:-translate-y-1"
-        >
-          Solicitar ser sponsor
-        </Link>
-      </div>
-    </div>
-  );
-}
-
 const editions: { [key: string]: string } = {
   peru: "https://wealthexpo.la/wp-content/uploads/2023/09/Group-3.png",
   mexico:
@@ -104,7 +48,7 @@ export default async function Page({ params }: Props) {
                   width="3em"
                 >
                   <path d="M224 0c70.7 0 128 57.3 128 128s-57.3 128-128 128S96 198.7 96 128 153.3 0 224 0zm-14.9 359.2l-18.6-31c-6.4-10.7 1.3-24.2 13.7-24.2h39.5c12.4 0 20.1 13.6 13.7 24.2l-18.6 31 33.4 123.9 39.5-161.2c77.2 12 136.3 78.8 136.3 159.4 0 17-13.8 30.7-30.7 30.7H30.7C13.8 512 0 498.2 0 481.3c0-80.6 59.1-147.4 136.3-159.4l39.5 161.2 33.4-123.9z" />
-                </svg>{" "}
+                </svg>
                 Sponsors
               </Link>
               <Link

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -17,6 +17,14 @@ import Link from "next/link";
 export default function NavBar() {
   const { data: session, status } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    console.log("session: ", session);
+    if (session?.user.error === "AccessTokenError") {
+      // force the user to log out if the session has AccessTokenError
+      signOut();
+    }
+  }, [session]);
 
   const menuItems = ["Peru", "Mexico", "Colombia"];
 
