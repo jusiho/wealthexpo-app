@@ -149,7 +149,7 @@ export default function IaChat() {
                   <div
                     className={`mb-2 ${
                       m[0] === "system"
-                        ? "bg-blue-500 text-white"
+                        ? "bg-[#05fd5f] text-black"
                         : "bg-gray-200 text-gray-800"
                     } inline-block rounded-lg p-2`}
                     dangerouslySetInnerHTML={{ __html: m[1] }}
@@ -159,7 +159,7 @@ export default function IaChat() {
             })}
             {loading && (
               <div className="text-left">
-                <div className="mb-2 bg-blue-500 text-white inline-block rounded-lg p-2">
+                <div className="mb-2 bg-[#05fd5f] text-black inline-block rounded-lg p-2">
                   <div className="flex gap-2">
                     <svg
                       className="animate-spin h-5 w-5 text-current"
@@ -197,7 +197,7 @@ export default function IaChat() {
             />
             <button
               id="send-button"
-              className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300"
+              className="bg-[#05fd5f] text-black px-4 py-2 rounded-r-md hover:bg-[#05fd5f] transition duration-300"
             >
               Enviar
             </button>
