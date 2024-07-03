@@ -6,7 +6,7 @@ function SearchBarFallback() {
 }
 
 export const metadata = {
-  title: "Flyteek - Login",
+  title: "Login",
   icons: {
     icon: "/favicon.ico",
   },
