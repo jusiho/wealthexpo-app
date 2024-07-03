@@ -4,6 +4,7 @@ import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { image } from "@nextui-org/react";
+import { cn } from "../_utils/tailwindMerge";
 
 type Props = {
   params: {
@@ -23,6 +24,12 @@ const editionFondo: { [key: string]: string } = {
   peru: "/landing/fondo_peru.png",
   mexico: "/landing/fondo_mexico.png",
   colombia: "/landing/fondo_colombia.png",
+};
+
+const colors: { [key: string]: string } = {
+  peru: "border-[#be0f1f]",
+  mexico: "border-[#05fd5f]",
+  colombia: "border-[#ffcd00]",
 };
 
 export default async function Page({ params }: Props) {
@@ -52,7 +59,10 @@ export default async function Page({ params }: Props) {
             <div className=" grid items-center max-w-4xl grid-cols-2 gap-4 mx-auto mt-12 md:mt-20 md:grid-cols-2 z-10 ">
               <Link
                 href={`/${edition}/sponsors`}
-                className="bg-gradient-to-r border border-[#474f5c] from-[#2f3542] to-gray-900 hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                className={cn(
+                  colors[edition],
+                  "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                )}
               >
                 <svg
                   viewBox="0 0 448 512"
@@ -66,7 +76,10 @@ export default async function Page({ params }: Props) {
               </Link>
               <Link
                 href={`/${edition}/speakers`}
-                className="bg-gradient-to-r border border-[#474f5c] from-[#2f3542] to-gray-900 hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                className={cn(
+                  colors[edition],
+                  "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                )}
               >
                 <svg
                   height="3em"
@@ -84,7 +97,12 @@ export default async function Page({ params }: Props) {
                 </svg>
                 Speakers
               </Link>
-              <div className="relative border border-[#474f5c] bg-gradient-to-r from-[#2f3542] to-gray-900 hover:from-[#2f3542] hover:to-[#2f3542] group h-32 flex flex-col  shadow-lg items-center justify-center gap-2">
+              <div
+                className={cn(
+                  colors[edition],
+                  "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                )}
+              >
                 <svg
                   viewBox="0 0 640 512"
                   fill="currentColor"
@@ -107,7 +125,10 @@ export default async function Page({ params }: Props) {
               <Link
                 href={`https://wealthexpo.la/peru/agenda`}
                 target="_blank"
-                className="bg-gradient-to-r border border-[#474f5c] from-[#2f3542] to-gray-900 hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                className={cn(
+                  colors[edition],
+                  "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                )}
               >
                 <svg
                   fill="currentColor"
@@ -141,14 +162,17 @@ export default async function Page({ params }: Props) {
         }}
       >
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center z-50">
-          <div className="flex justify-center max-w-2xl mx-auto items-center">
+          <div className="flex justify-center max-w-2xl mx-auto items-center px-10">
             <Image src={editions[edition]} width={500} height={500} alt="" />
           </div>
 
           <div className=" grid items-center max-w-4xl grid-cols-2 gap-4 mx-auto mt-12 md:mt-20 md:grid-cols-2 z-10 ">
             <Link
               href={`/${edition}/sponsors`}
-              className="bg-gradient-to-r border border-[#474f5c] from-[#2f3542] to-gray-900 hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+              className={cn(
+                colors[edition],
+                "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+              )}
             >
               <svg
                 viewBox="0 0 448 512"
@@ -162,7 +186,10 @@ export default async function Page({ params }: Props) {
             </Link>
             <Link
               href={`/${edition}/speakers`}
-              className="bg-gradient-to-r border border-[#474f5c] from-[#2f3542] to-gray-900 hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+              className={cn(
+                colors[edition],
+                "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+              )}
             >
               <svg
                 height="3em"
@@ -183,7 +210,10 @@ export default async function Page({ params }: Props) {
             {isSponsor ? (
               <Link
                 href={`/${edition}/asistents`}
-                className="bg-gradient-to-r border border-[#474f5c] from-[#2f3542] to-gray-900 hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                className={cn(
+                  colors[edition],
+                  "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                )}
               >
                 <svg
                   viewBox="0 0 640 512"
@@ -196,7 +226,12 @@ export default async function Page({ params }: Props) {
                 Asistentes
               </Link>
             ) : (
-              <div className="relative bg-gradient-to-r border border-[#474f5c] from-[#2f3542] to-gray-900 hover:from-[#2f3542] hover:to-[#2f3542] group h-32 flex flex-col  shadow-lg items-center justify-center gap-2">
+              <div
+                className={cn(
+                  colors[edition],
+                  "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                )}
+              >
                 <svg
                   viewBox="0 0 640 512"
                   fill="currentColor"
@@ -220,7 +255,10 @@ export default async function Page({ params }: Props) {
 
             <Link
               href={`https://wealthexpo.la/peru/agenda`}
-              className="bg-gradient-to-r border border-[#474f5c] from-[#2f3542] to-gray-900 hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col shadow-lg items-center justify-center gap-2"
+              className={cn(
+                colors[edition],
+                "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+              )}
             >
               <svg
                 fill="currentColor"

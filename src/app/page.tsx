@@ -18,7 +18,7 @@ const sponsors = [
     href: "/peru",
     imageSrc: "https://wealthexpo.la/wp-content/uploads/2023/09/Group-3.png",
     alt: "Wealth Expo Perú",
-    color: "[#be0f1f]",
+    color: "border-[#be0f1f]",
   },
   {
     role: "sponsor_mexico",
@@ -26,7 +26,7 @@ const sponsors = [
     imageSrc:
       "https://wealthexpo.la/wp-content/uploads/2023/09/Group-7-1024x257.png",
     alt: "Wealth Expo México",
-    color: "[#05fd5f]",
+    color: "border-[#05fd5f]",
   },
   {
     role: "sponsor_colombia",
@@ -34,7 +34,7 @@ const sponsors = [
     imageSrc:
       "https://wealthexpo.la/wp-content/uploads/2023/09/Group-11-1024x223.png",
     alt: "Wealth Expo Colombia",
-    color: "[#ffcd00]",
+    color: "border-[#ffcd00]",
   },
 ];
 
@@ -52,7 +52,7 @@ function SponsorBox({
   return (
     <Link
       href={href}
-      className={`bg-black border border-${color} h-32 flex flex-col shadow-lg items-center justify-center gap-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1`}
+      className={`bg-black border ${color} h-32 flex flex-col shadow-lg items-center justify-center gap-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1`}
     >
       <Image src={imageSrc} alt={alt} width={500} height={500} />
     </Link>
