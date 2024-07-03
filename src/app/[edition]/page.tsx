@@ -159,6 +159,7 @@ export default async function Page({ params }: Props) {
         className="h-screen py-10 relative  sm:py-16 lg:py-24 lg:pt-36"
         style={{
           backgroundImage: `url(${imageUrl})`,
+          backgroundSize: "cover",
         }}
       >
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center z-50">

@@ -62,7 +62,10 @@ function SponsorBox({
 export default async function Home() {
   return (
     <div
-      style={{ backgroundImage: "url('/landing/fondo_mexico.png')" }}
+      style={{
+        backgroundImage: "url('/landing/fondo_mexico.png')",
+        backgroundSize: "cover",
+      }}
       className="flex min-h-screen flex-col items-center justify-between py-24"
     >
       <div className="z-20 px-10">
@@ -83,7 +86,7 @@ export default async function Home() {
               Ediciones
             </h2>
           </div>
-
+          {/* <ThemeSwitcher /> */}
           <div className="grid items-center max-w-4xl grid-cols-1 gap-4 mx-auto mt-12 md:mt-20 md:grid-cols-3 z-10">
             {sponsors.map(({ role, href, imageSrc, alt, color }) => (
               <SponsorBox
