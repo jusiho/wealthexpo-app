@@ -6,7 +6,7 @@ import { NextUIProvider } from "@nextui-org/react";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
-    <NextUIProvider >
+    <NextUIProvider>
       <NextThemesProvider {...props}>{children}</NextThemesProvider>
     </NextUIProvider>
   );

@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth/next";
 import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 // Titulo de la pagina que aparece en el navegador barra de arriba
 export const metadata = {
@@ -17,6 +18,7 @@ const sponsors = [
     href: "/peru",
     imageSrc: "https://wealthexpo.la/wp-content/uploads/2023/09/Group-3.png",
     alt: "Wealth Expo Perú",
+    color: "[#be0f1f]",
   },
   {
     role: "sponsor_mexico",
@@ -24,6 +26,7 @@ const sponsors = [
     imageSrc:
       "https://wealthexpo.la/wp-content/uploads/2023/09/Group-7-1024x257.png",
     alt: "Wealth Expo México",
+    color: "[#05fd5f]",
   },
   {
     role: "sponsor_colombia",
@@ -31,6 +34,7 @@ const sponsors = [
     imageSrc:
       "https://wealthexpo.la/wp-content/uploads/2023/09/Group-11-1024x223.png",
     alt: "Wealth Expo Colombia",
+    color: "[#ffcd00]",
   },
 ];
 
@@ -38,15 +42,17 @@ function SponsorBox({
   href,
   imageSrc,
   alt,
+  color,
 }: {
   href: string;
   imageSrc: string;
   alt: string;
+  color: string;
 }) {
   return (
     <Link
       href={href}
-      className="bg-black border border-gray-600 h-32 flex flex-col shadow-lg items-center justify-center gap-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1"
+      className={`bg-black border border-${color} h-32 flex flex-col shadow-lg items-center justify-center gap-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1`}
     >
       <Image src={imageSrc} alt={alt} width={500} height={500} />
     </Link>
@@ -55,13 +61,11 @@ function SponsorBox({
 
 export default async function Home() {
   return (
-    <main
+    <div
       style={{ backgroundImage: "url('/landing/fondo_mexico.png')" }}
       className="flex min-h-screen flex-col items-center justify-between py-24"
     >
-      <div className=" z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex"></div>
-
-      <div className="z-20 relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-[#03fc5f] after:via-[#03ff81] after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-[#03ff81] before:dark:opacity-10 after:dark:from-[#03ff81] after:dark:via-[#03ff81] after:dark:opacity-40 before:lg:h-[360px] ">
+      <div className="z-20 px-10">
         <Image
           className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] "
           src="/landing/wealthexpo.png"
@@ -81,17 +85,18 @@ export default async function Home() {
           </div>
 
           <div className="grid items-center max-w-4xl grid-cols-1 gap-4 mx-auto mt-12 md:mt-20 md:grid-cols-3 z-10">
-            {sponsors.map(({ role, href, imageSrc, alt }) => (
+            {sponsors.map(({ role, href, imageSrc, alt, color }) => (
               <SponsorBox
                 key={role}
                 href={href}
                 imageSrc={imageSrc}
                 alt={alt}
+                color={color}
               />
             ))}
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

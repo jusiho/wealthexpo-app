@@ -18,6 +18,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [nextui({ defaultTheme: "dark" })],
+  plugins: [nextui()],
 };
 export default config;

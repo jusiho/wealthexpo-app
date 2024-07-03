@@ -272,8 +272,7 @@ export default function TableWith() {
   };
 
   const handleButtonRefuse = async (user: User) => {
-    console.log("Aprobar");
-
+    console.log("Rechazar");
     setLoading(true);
     try {
       const response = await fetch(
@@ -292,33 +291,8 @@ export default function TableWith() {
       );
       if (response.status === 200) {
         const data = await response.json();
-        // console.log(data);
-        // console.log(user);
-
-        // const emailTo = user.email;
-        // const emailData = {
-        //   id_register: user.id_register,
-        //   id_unique: user.id_unique,
-        //   name: user.name,
-        //   lastname: user.lastname,
-        //   email: user.email,
-        //   phone: user.phone,
-        //   company: user.company,
-        //   country: user.country,
-        //   know_exp: user.know_exp,
-        //   level_exp: user.level_exp,
-        //   category: user.category,
-        //   edition: user.edition,
-        //   type_ticket: user.type_ticket,
-        // };
-        // console.log(emailData);
-
-        // const htmlResponse = await invoiceTemplate({ emailData });
-        // console.log(htmlResponse);
-
-        // // Función para enviar el correo electrónico de forma asincrónica
-        // sendEmailConfirmation({ emailTo, htmlResponse });
-
+        console.log(data);
+        
         // Code to handle successful response
       } else {
         // Code to handle unsuccessful response
@@ -331,6 +305,7 @@ export default function TableWith() {
       setLoading(false);
       mutate();
     }
+
 
     console.log("Aprobar", user);
   };
