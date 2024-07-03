@@ -69,7 +69,7 @@ export default function NavBar() {
           <NavbarItem>
             <Link href="/peru">Peru</Link>
           </NavbarItem>
-          <NavbarItem isActive>
+          <NavbarItem>
             <Link href="/mexico">Mexico</Link>
           </NavbarItem>
           <NavbarItem>
@@ -82,7 +82,7 @@ export default function NavBar() {
             {status === "loading" ? (
               <p>Loading...</p>
             ) : session ? (
-              <button onClick={() => signOut()}>Sign out</button>
+              <button onClick={() => signOut()}>Salir</button>
             ) : (
               <Link href="/login">Login</Link>
             )}

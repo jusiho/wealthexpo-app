@@ -66,11 +66,11 @@ export default async function Home() {
         backgroundImage: "url('/landing/fondo_mexico.png')",
         backgroundSize: "cover",
       }}
-      className="flex min-h-screen flex-col items-center justify-between py-24"
+      className="flex min-h-screen flex-col justify-center items-center py-24"
     >
       <div className="z-20 px-10">
         <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] "
+          className="relative "
           src="/landing/wealthexpo.png"
           alt="Next.js Logo"
           width={500}
@@ -82,8 +82,8 @@ export default async function Home() {
       <div className="py-10 relative sm:py-16 lg:py-24 lg:pt-36">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center z-50">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-light text-white sm:text-4xl sm:leading-tight">
-              Ediciones
+            <h2 className="text-2xl  text-white sm:text-4xl sm:leading-tight tracking-widest font-bold">
+              EDICIONES
             </h2>
           </div>
           {/* <ThemeSwitcher /> */}
