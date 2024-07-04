@@ -36,7 +36,7 @@ export default async function Home({ params }: Props) {
 
   return (
     <main className="dark:bg-black lg:mx-auto container">
-      <PDFViewer fileUrl="/pdf/WE AGENDA MAIN EVENT.pdf" />
+      <PDFViewer fileUrl="/pdf/WE AGENDA WORKSHOPS.pdf" />
     </main>
   );
 }
