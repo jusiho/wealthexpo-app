@@ -4,20 +4,8 @@ import UserTable from "./UserTable";
 import SwrProvider from "@/app/Providers/SwrProvider";
 import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth/next";
-import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
+import { AuthOptions } from "@/app/_utils/AuthOptions";
 
-// async function fetchOrders() {
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_URL_LOCAL}/api/orders`);
-//   // The return value is *not* serialized
-//   // You can return Date, Map, Set, etc.
-
-//   if (!res.ok) {
-//     // This will activate the closest `error.js` Error Boundary
-//     throw new Error("Failed to fetch data");
-//   }
-
-//   return res.json();
-// }
 export const metadata = {
   title: "Wealth Expo LA | App Web Oficial",
   description:
@@ -55,7 +43,7 @@ export default async function Home({ params }: Props) {
             />
           </Link>
         </div>
-        <UserTable edition={edition}/>
+        <UserTable edition={edition} />
       </main>
     </SwrProvider>
   );

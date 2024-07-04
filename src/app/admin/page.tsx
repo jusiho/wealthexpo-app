@@ -4,7 +4,7 @@ import SwrProvider from "../Providers/SwrProvider";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
-import { AuthOptions } from "../api/auth/[...nextauth]/route";
+import { AuthOptions } from "@/app/_utils/AuthOptions";
 const UserTable = dynamic(() => import("./TableConfirm"), { ssr: false });
 
 export default async function Page() {

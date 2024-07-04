@@ -1,9 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
-import SwrProvider from "@/app/Providers/SwrProvider";
 import { notFound } from "next/navigation";
-import { getServerSession } from "next-auth/next";
-import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { image } from "@nextui-org/react";
 import dynamic from "next/dynamic";
 const PDFViewer = dynamic(() => import("./PDFViewer"), {

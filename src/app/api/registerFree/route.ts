@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { AuthOptions } from "../auth/[...nextauth]/route";
+import { AuthOptions } from "@/app/_utils/AuthOptions";
 import { getServerSession } from "next-auth/next";
 
 export async function GET(request: Request) {

@@ -1,5 +1,3 @@
-import { getServerSession } from "next-auth/next";
-import { AuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
