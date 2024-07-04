@@ -179,7 +179,7 @@ export default async function Page({ params }: Props) {
                         "bg-gradient-to-r p-8 text-black font-bold rounded-lg  hover:from-[#2f3542] hover:to-[#2f3542] flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
                       )}
                     >
-                      Workshop
+                      Workshops
                     </Link>
                   </div>
                 </PopoverContent>
