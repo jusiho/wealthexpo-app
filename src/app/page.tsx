@@ -83,7 +83,7 @@ export default async function Home() {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center z-50">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl  text-white sm:text-4xl sm:leading-tight tracking-widest font-bold">
-              EDICIONESs
+              EDICIONES
             </h2>
           </div>
           {/* <ThemeSwitcher /> */}
