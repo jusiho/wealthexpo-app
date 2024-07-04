@@ -8,6 +8,7 @@ const allowedOrigins = [
   "http://127.0.0.1:3000",
   "http://localhost:3000",
   "https://app.weatlhexpo.com",
+  "https://cdnjs.cloudflare.com"
 ];
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
