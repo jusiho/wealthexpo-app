@@ -61,7 +61,7 @@ export default function IaChat() {
 
   return (
     <>
-      <div className="fixed bottom-0 right-0 mb-2 mr-4">
+      <div className="fixed bottom-0 right-0 mb-2 mr-4 z-20">
         <button
           onClick={() => setOpen(!open)}
           id="open-chat"
@@ -97,7 +97,7 @@ export default function IaChat() {
 
       <div
         id="chat-container"
-        className={`${open ? "" : "hidden"} fixed bottom-16 right-4 w-96`}
+        className={`${open ? "" : "hidden"} fixed bottom-16 right-4 w-96 z-20`}
       >
         <div className="bg-gray-700 border border-gray-700 shadow-md rounded-lg max-w-lg w-full">
           <div className="p-4 border-b bg-black border border-gray-600 text-white rounded-t-lg flex justify-between items-center">

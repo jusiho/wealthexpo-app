@@ -61,6 +61,7 @@ export default async function Page({ params }: Props) {
           className="h-screen py-10 relative bg-black sm:py-16 lg:py-24 lg:pt-36"
           style={{
             backgroundImage: `url(${imageUrl})`,
+            backgroundSize: "cover",
           }}
         >
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center z-50">
@@ -112,7 +113,7 @@ export default async function Page({ params }: Props) {
               <div
                 className={cn(
                   colors[edition],
-                  "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                  "bg-gradient-to-r border group rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
                 )}
               >
                 <svg
@@ -257,7 +258,7 @@ export default async function Page({ params }: Props) {
                 href={`/${edition}/asistents`}
                 className={cn(
                   colors[edition],
-                  "bg-gradient-to-r border rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                  "bg-gradient-to-r border group rounded-lg bg-black hover:from-[#2f3542] hover:to-[#2f3542] h-32 flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
                 )}
               >
                 <svg
