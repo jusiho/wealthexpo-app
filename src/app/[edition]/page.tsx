@@ -165,7 +165,7 @@ export default async function Page({ params }: Props) {
                 <PopoverContent>
                   <div className="px-1 py-2 flex gap-3">
                     <Link
-                      href={`/${edition}/agenda`}
+                      href={`https://wealthexpo.la/peru/agenda-main-stage/`}
                       className={cn(
                         bgColors[edition],
                         "bg-gradient-to-r p-8 text-black font-bold rounded-lg  hover:from-[#2f3542] hover:to-[#2f3542] flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
@@ -174,7 +174,7 @@ export default async function Page({ params }: Props) {
                       Principal
                     </Link>
                     <Link
-                      href={`/${edition}/agenda-workshop`}
+                      href={`https://wealthexpo.la/peru/agenda-workshop-stage/`}
                       className={cn(
                         bgColors[edition],
                         "bg-gradient-to-r p-8 text-black font-bold rounded-lg  hover:from-[#2f3542] hover:to-[#2f3542] flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
@@ -329,7 +329,7 @@ export default async function Page({ params }: Props) {
               <PopoverContent>
                 <div className="px-1 py-2 flex gap-3">
                   <Link
-                    href={`/${edition}/agenda`}
+                    href={`https://wealthexpo.la/peru/agenda-main-stage/`}
                     className={cn(
                       bgColors[edition],
                       "bg-gradient-to-r p-8 text-black font-bold rounded-lg  hover:from-[#2f3542] hover:to-[#2f3542] flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
@@ -338,7 +338,7 @@ export default async function Page({ params }: Props) {
                     Principal
                   </Link>
                   <Link
-                    href={`/${edition}/agenda-workshop`}
+                    href={`https://wealthexpo.la/peru/agenda-workshop-stage/`}
                     className={cn(
                       bgColors[edition],
                       "bg-gradient-to-r p-8 text-black font-bold rounded-lg  hover:from-[#2f3542] hover:to-[#2f3542] flex flex-col  shadow-lg items-center justify-center gap-2 transition duration-300 ease-in-out transform hover:-translate-y-1"
