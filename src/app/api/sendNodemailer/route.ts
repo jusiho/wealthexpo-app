@@ -4,10 +4,6 @@ const nodemailer = require("nodemailer");
 export async function POST(req: Request) {
   const { from, emailFrom, emailTo, replyTo, subject, text, html } =
     await req.json();
-  console.log("emailFrom", emailFrom);
-  console.log("emailTo", emailTo);
-  console.log("subject", subject);
-  console.log("text", text);
 
   const dataEmail = {
     name: process.env.EMAIL_NAME, // <= Add this
