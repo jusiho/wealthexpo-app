@@ -34,8 +34,12 @@ export default async function Page() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {categorias.map((category: any) => (
-          <Link href={`/vote/${category.id}`} className="w-full">
-            <Card key={category.id} className="cursor-pointer transition-all w-full">
+          <Link
+            key={category.id}
+            href={`/vote/${category.id}`}
+            className="w-full"
+          >
+            <Card className="cursor-pointer transition-all w-full">
               <CardBody>
                 {category.title}
                 {/* <div className="text-sm mt-2">{category.descripcion}</div> */}

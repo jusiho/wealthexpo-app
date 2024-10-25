@@ -73,11 +73,8 @@ export default function ContestantsComp({ contestantsArray, categoryId }: any) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {contestantsArray.map((contestant: any) => (
-        <div onClick={() => handleVoteClick(contestant)}>
-          <Card
-            key={contestant.id}
-            className="cursor-pointer hover:border-primary"
-          >
+        <div key={contestant.id} onClick={() => handleVoteClick(contestant)}>
+          <Card className="cursor-pointer hover:border-primary">
             <CardBody>
               <h3 className="font-semibold">{contestant.nombre}</h3>
               <p>{contestant.descripcion}</p>
