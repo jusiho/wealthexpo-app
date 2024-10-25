@@ -19,7 +19,7 @@ export async function GET(request: Request) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Basic ${process.env.GLOBAL_TOKEN_WORDPRESS}`,
     },
   };
 

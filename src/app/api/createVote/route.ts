@@ -16,6 +16,7 @@ export async function POST(request: Request) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Basic ${process.env.GLOBAL_TOKEN_WORDPRESS}`,
     },
     body: JSON.stringify(data),
   };

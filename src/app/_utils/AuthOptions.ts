@@ -76,19 +76,13 @@ export const AuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user, account }: any) {
-      console.log("user : ", user);
-      console.log("account : ", account);
-
       // Initial sign in
       if (account) {
         console.log("user : ", user);
 
         token = { ...token, ...user };
       } else {
-        console.log("user : ", token);
-
         const jwtPayload: { exp: number } = jwtDecode(token.token);
-        console.log("jwtPayload", jwtPayload);
 
         let currentDate = new Date();
 
@@ -106,9 +100,6 @@ export const AuthOptions = {
       return token;
     },
     async session({ session, token }: any) {
-      console.log("session : ", session);
-      console.log("token : ", token);
-
       if (token) {
         const responseData = await fetch(
           `${process.env.API_URL}/wp-json/myplugin/v1/me`,
@@ -121,7 +112,6 @@ export const AuthOptions = {
           }
         );
         const dataUser = await responseData.json();
-        console.log("dataUesr : ", dataUser);
 
         session.user = token;
         session.user.id = dataUser.ID;

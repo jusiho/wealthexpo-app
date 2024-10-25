@@ -17,10 +17,13 @@ export async function GET(request: Request) {
   const search = url.searchParams.get("search");
   const endpoint = url.searchParams.get("endpoint");
 
+  console.log(process.env.GLOBAL_TOKEN_WORDPRESS);
+
   const requestOptions = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Basic ${process.env.GLOBAL_TOKEN_WORDPRESS}`,
     },
   };
 
@@ -32,6 +35,9 @@ export async function GET(request: Request) {
     console.log(res);
 
     if (!res.ok) {
+      const response = await res.json();
+      console.log(response);
+
       throw new Error(`Error fetching order count: ${res.statusText}`);
     }
 
