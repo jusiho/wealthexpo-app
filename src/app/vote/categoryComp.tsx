@@ -22,7 +22,7 @@ export default function Category({ categorias }: any) {
         {categorias.map((category: any) => (
           <Card
             key={category.id}
-            className="cursor-pointer transition-all"
+            className="cursor-pointer transition-all border"
             onClick={() => handleCategoryClick(category.id)}
           >
             <CardBody>{category.title}</CardBody>

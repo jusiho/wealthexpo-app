@@ -7,6 +7,7 @@ import {
   Link,
 } from "@nextui-org/react";
 import { headers } from "next/headers";
+import TitleSvg from "./tItleSvg";
 
 export default async function Page() {
   const response = await fetch(
@@ -27,12 +28,13 @@ export default async function Page() {
       className=" bg-cover bg-center min-h-screen"
       style={{ backgroundImage: "url('/vote/WECO-AWARDS-FONDO.jpg')" }}
     >
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center mb-2">
-          Votación de Premios Financieros
-        </h1>
-        <p className="text-center text-gray-600 mb-8">
-          Selecciona la categoría en la que deseas votar
+      <div className="container mx-auto px-4 py-8 text-center">
+        <div className="flex flex-col items-center">
+          <TitleSvg />
+        </div>
+
+        <p className="text-center text-[#FFCD00] my-8">
+          Selecciona la(s) categoría(s) en las que deseas votar
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -42,7 +44,7 @@ export default async function Page() {
               href={`/vote/${category.id}`}
               className="w-full"
             >
-              <Card className="cursor-pointer transition-all w-full">
+              <Card className="cursor-pointer transition-all w-full border border-white">
                 <Image
                   removeWrapper
                   alt="Card background"
@@ -50,7 +52,7 @@ export default async function Page() {
                   src={category.image}
                 />
                 <CardFooter className="absolute bottom-0">
-                  {category.title}
+                  <p className="text-3xl">{category.title}</p>
                 </CardFooter>
               </Card>
             </Link>

@@ -107,9 +107,9 @@ export default function ContestantsComp({ contestantsArray, categoryId }: any) {
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="flat" onPress={onClose}>
-                  Cerrar
+                  Cancelar
                 </Button>
-                <Button color="primary" onPress={handleVoteSubmit}>
+                <Button className="text-white bg-gradient-to-r from-[#b49b2d] via-[#674900] to-[#b49b2d]" color="primary" onPress={handleVoteSubmit}>
                   Confirmar voto
                 </Button>
               </ModalFooter>
