@@ -7,7 +7,7 @@ export default function Category({ categorias }: any) {
   const router = useRouter();
 
   const handleCategoryClick = (categoryId: string) => {
-    router.push(`/vote/${categoryId}`);
+    router.push(`/we-awards-2024/${categoryId}`);
   };
 
   return (

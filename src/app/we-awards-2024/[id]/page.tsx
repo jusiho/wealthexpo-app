@@ -45,7 +45,7 @@ export default async function Home({ params }: Props) {
 
         <div className="flex justify-center mt-8">
           <Link
-            href={"/vote"}
+            href={"/we-awards-2024"}
             className="text-white bg-gradient-to-r from-[#b49b2d] via-[#674900] to-[#b49b2d] font-semibold py-2 px-4 rounded shadow-lg transition duration-200 ease-in-out transform hover:scale-105"
           >
             <div className="flex align-middle">Volver a categorias</div>

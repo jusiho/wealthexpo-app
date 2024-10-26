@@ -52,7 +52,7 @@ export default async function Page() {
                   src={category.image}
                 />
                 <CardFooter className="absolute bottom-0">
-                  <p className="text-3xl">{category.title}</p>
+                  <p className="text-3xl text-left">{category.title}</p>
                 </CardFooter>
               </Card>
             </Link>
