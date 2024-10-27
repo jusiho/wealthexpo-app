@@ -75,6 +75,9 @@ export default function NavBar() {
           <NavbarItem>
             <Link href="/colombia">Colombia</Link>
           </NavbarItem>
+          <NavbarItem>
+            <Link href="/we-awards-2024">WE Awards</Link>
+          </NavbarItem>
         </NavbarContent>
 
         <NavbarContent justify="end">
