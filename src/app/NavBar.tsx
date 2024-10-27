@@ -93,23 +93,18 @@ export default function NavBar() {
         </NavbarContent>
 
         <NavbarMenu>
-          {menuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                className="w-full"
-                color={
-                  index === 2
-                    ? "warning"
-                    : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
-              >
-                {item}
-              </Link>
-            </NavbarMenuItem>
-          ))}
+          <NavbarItem>
+            <Link href="/peru">Peru</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link href="/mexico">Mexico</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link href="/colombia">Colombia</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link href="/we-awards-2024">WE Awards</Link>
+          </NavbarItem>
           <NavbarMenuItem>
             <Button className="w-full" onClick={() => signOut()}>
               Salir
