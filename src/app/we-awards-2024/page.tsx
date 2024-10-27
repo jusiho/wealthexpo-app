@@ -41,7 +41,7 @@ export default async function Page() {
           {categorias.map((category: any) => (
             <Link
               key={category.id}
-              href={`/vote/${category.id}`}
+              href={`/we-awards-2024/${category.id}`}
               className="w-full"
             >
               <Card className="cursor-pointer transition-all w-full border border-white">
