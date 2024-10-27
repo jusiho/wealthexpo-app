@@ -38,7 +38,7 @@ export default async function Home({ params }: Props) {
           Votación para la Categoría {title}
         </h1>
         <p className="text-center text-[#FFCD00] mb-8">
-          Selecciona la empresa por la cual deseas votar
+          Selecciona una de las opciones por la cual deseas votar
         </p>
 
         <ContestantsComp contestantsArray={contestantsArray} categoryId={id} />
